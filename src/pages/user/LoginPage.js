@@ -8,7 +8,7 @@ const LoginPage = (props) => {
     return(
         <div className="container">
           <div className="login-wrapper" >
-            <h2>Login Page</h2>
+            <h2>Login page</h2>
             <Form className="form-container">
               <div className="form-group">
                 <label htmlFor="login">Login</label>

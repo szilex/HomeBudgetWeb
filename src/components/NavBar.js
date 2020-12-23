@@ -1,50 +1,42 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/NavBar'
+import NavDropdown from 'react-bootstrap/NavDropdown'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
 
-export default class NavigationBar extends React.Component {
-    
-    navStyle = {
-        color: 'white',
-        textDecoration: "none",
-    };
-
+export default class NavBar extends React.Component {
     render() {
-        return (
-            <nav>
-                <h3>Home Budget</h3>
-                <ul className="nav-links">
-                    <li>
-                        <Link style={this.navStyle} to="/home">Home</Link>
-                    </li>
-                    <li>
-                        <Link style={this.navStyle} to="/budget/archive">Archive budgets</Link>
-                    </li>
-                    <li>
-                        <Link style={this.navStyle} to="/budget/current">Current budget</Link>
-                    </li>
-                    <li>
-                        <Link style={this.navStyle} to="/budget/new">New budget</Link>
-                    </li>
-                    <li>
-                        <Link style={this.navStyle} to="/expense/current">Current regular expenses</Link>
-                    </li>
-                    <li>
-                        <Link style={this.navStyle} to="/expense/new">New regular expenses</Link>
-                    </li>
-                    <li>
-                        <Link style={this.navStyle} to="/strategy/archive">Archive strategies</Link>
-                    </li>
-                    <li>
-                        <Link style={this.navStyle} to="/strategy/current">Current strategies</Link>
-                    </li>
-                    <li>
-                        <Link style={this.navStyle} to="/strategy/archive">New strategy</Link>
-                    </li>
-                    <li>
-                        <Link style={this.navStyle} to="/user/account">My account</Link>
-                    </li>
-                </ul>
-            </nav>
+        return(
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+                <Navbar.Brand href="/home">
+                    <FontAwesomeIcon icon={faHome}/>{' '}
+                    Home Budget Web
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="mr-auto">
+                        <NavDropdown title="Budget" id="collasible-nav-dropdown">
+                            <NavDropdown.Item href="/budget/new">New budget</NavDropdown.Item>
+                            <NavDropdown.Item href="/budget/current">Current budget</NavDropdown.Item>
+                            <NavDropdown.Item href="/budget/archive">Archive budgets</NavDropdown.Item>
+                        </NavDropdown>
+                        <NavDropdown title="Strategy" id="collasible-nav-dropdown">
+                            <NavDropdown.Item href="/strategy/new">New strategy</NavDropdown.Item>
+                            <NavDropdown.Item href="/strategy/current">Current strategies</NavDropdown.Item>
+                            <NavDropdown.Item href="/strategy/archive">Archive strategies</NavDropdown.Item>
+                        </NavDropdown>
+                        <NavDropdown title="Regular expense" id="collasible-nav-dropdown">
+                            <NavDropdown.Item href="/expense/new">New regular expense</NavDropdown.Item>
+                            <NavDropdown.Item href="/expense/current">Current regular expenses</NavDropdown.Item>
+                        </NavDropdown>
+                    </Nav>
+                    <Nav>
+                        <Nav.Link href="/user">My account</Nav.Link>
+                        <Nav.Link eventKey={2} href="/logout">Logout</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>   
         )
     }
-};
+}
