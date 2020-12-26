@@ -4,8 +4,15 @@ import Navbar from 'react-bootstrap/NavBar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
+import { history } from "../App"
+import { AuthService } from "../services/AuthService"
 
 export default class NavBar extends React.Component {
+    logout() {
+        AuthService.logout();
+        history.push('/login');
+      }
+    
     render() {
         return(
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -33,7 +40,7 @@ export default class NavBar extends React.Component {
                     </Nav>
                     <Nav>
                         <Nav.Link href="/user">My account</Nav.Link>
-                        <Nav.Link eventKey={2} href="/logout">Logout</Nav.Link>
+                        <Nav.Link eventKey={2} href="/login" onClick={ () => {AuthService.logout(); history.push("/login")} }>Logout</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>   

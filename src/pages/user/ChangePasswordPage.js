@@ -1,11 +1,15 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import AuthService from '../../services/AuthService'
 
 const ChangePasswordPage = (props) => {
     const { touched, errors } = props;
-    return(
+    if (AuthService.currentTokenValue) {
+      return <Redirect to={"/home"} props={props}/>
+  } else {
+      return(
         <div className="container">
             <div className="login-wrapper" >
                 <h2>Change password</h2>
@@ -32,8 +36,9 @@ const ChangePasswordPage = (props) => {
                 </Form>
             </div>
         </div>
-    )
+      )
   }
+}
   
   const ChangePasswordFormik = withFormik({
     mapPropsToValues: (props) => {

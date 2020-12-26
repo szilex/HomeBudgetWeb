@@ -17,7 +17,7 @@ export default class LoginNavBar extends React.Component {
                     <Nav className="mr-auto"/>
                     <Nav>
                         <Nav.Link href="/login">Login</Nav.Link>
-                        <Nav.Link eventKey={2} href="/register">Register</Nav.Link>
+                        <Nav.Link eventKey={2} href="/login/register">Register</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>   
