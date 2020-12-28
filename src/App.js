@@ -6,9 +6,13 @@ import { AuthService } from "./services/AuthService"
 
 import { Router, Switch, Route, } from "react-router-dom";
 import { PrivateRoute } from './components/PrivateRoute';
-import Login from "./pages/user/LoginPage"
-import Register from "./pages/user/RegisterPage"
-import ChangePassword from "./pages/user/ChangePasswordPage"
+import LoginPage from "./pages/user/LoginPage"
+import RegisterPage from "./pages/user/RegisterPage"
+import ChangePasswordPage from "./pages/user/ChangePasswordPage"
+import BudgetPage from "./pages/budget/BudgetPage"
+import NewBudgetPage from "./pages/budget/NewBudgetPage"
+import CurrentBudgetPage from "./pages/budget/CurrentBudgetPage"
+import ArchiveBudgetsPage from "./pages/budget/ArchiveBudgetsPage"
 import StrategyPage from "./pages/strategy/StrategyPage"
 import CurrentStrategiesPage from "./pages/strategy/CurrentStrategiesPage"
 import ArchiveStrategiesPage from './pages/strategy/ArchiveStrategiesPage';
@@ -51,20 +55,24 @@ export default class App extends React.Component {
               <div className="auth-wrapper">
                 <div className="auth-inner">
                   <Switch>
-                    <Route exact path="/login" component={Login} />
-                    <Route exact path="/login/register" component={Register} />
-                    <Route exact path="/login/changePassword" component={ChangePassword} />
+                    <Route exact path="/login" component={LoginPage} />
+                    <Route exact path="/login/register" component={RegisterPage} />
+                    <Route exact path="/login/changePassword" component={ChangePasswordPage} />
                     <Route component={NotFoundPage}/>
                   </Switch>
                 </div>
               </div>
             </Route>
-            <Route path="/">
+            <PrivateRoute path="/">
               <NavBar/>
-              <div className="auth-wrapper">
-                <div className="auth-inner">
+              <div className="page-wrapper">
+                <div className="page-inner">
                   <Switch>
                     <PrivateRoute exact path="/home" component={HomePage}/>
+                    <PrivateRoute path="/budget/id/:id" component={BudgetPage}/>
+                    <PrivateRoute exact path="/budget/current" component={CurrentBudgetPage}/>
+                    <PrivateRoute exact path="/budget/archive" component={ArchiveBudgetsPage}/>
+                    <PrivateRoute exact path="/budget/new" component={NewBudgetPage}/>
                     <PrivateRoute path="/strategy/id/:id" component={StrategyPage}/>
                     <PrivateRoute exact path="/strategy/current" component={CurrentStrategiesPage}/>
                     <PrivateRoute exact path="/strategy/archive" component={ArchiveStrategiesPage}/>
@@ -77,7 +85,7 @@ export default class App extends React.Component {
                   </Switch>
                 </div>
               </div>
-            </Route>
+            </PrivateRoute>
           </Switch>
         </div>
       </Router>

@@ -1,13 +1,12 @@
 import { useHistory } from 'react-router-dom';
-import strategies from './strategy-contents'
 
-const StrategyPage = ({ match }) => {
+const StrategyPage = (props) => {
 
     const history = useHistory();
-    const id = match.params.id;
-    const strategy = strategies.find(strategy => strategy.id.toString() === id);
+    //const id = props.match.params.id;
+    const strategy = props.location.strategy;
 
-    if (!strategy) return <h1>Strategy does not exist</h1>
+    if (!strategy) return <h1>Strategy not found</h1>
 
     return (
         <>

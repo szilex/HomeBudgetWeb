@@ -13,11 +13,9 @@ class HomePage extends React.Component {
     }
 
     render() {
-        const { currentToken } = this.state;
         return (
             <>
             <h1>Welcome to Home Budget Web app</h1>
-            <p>Your current JWT token:<br />{currentToken}</p>
             </>
         )
     }
