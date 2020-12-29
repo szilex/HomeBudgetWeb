@@ -140,3 +140,15 @@ body, html, .App, #root, .auth-wrapper, .page-wrapper {
 .spinner {
   text-align: center;
 }
+
+.list-container {
+  columns: 2 auto; 
+  display: grid; 
+  direction: column;
+  align-items: center;
+  justify-content: center space-between;
+}
+
+.strategy-form-wrapper {
+  maxWidth: "150dp";
+}
