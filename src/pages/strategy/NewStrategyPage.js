@@ -16,6 +16,7 @@ import FormHelperText from '@material-ui/core/FormHelperText'
 import { red } from '@material-ui/core/colors';
 import DateFnsUtils from '@date-io/date-fns'
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers'
+import * as moment from 'moment'
 
 const styles = theme => ({
     textField: {
@@ -41,8 +42,9 @@ class NewStrategyPage extends React.Component {
     async componentDidMount() {
         try {
             const result = await StrategyService.getStrategyCategories()
-            console.log(result)
-            this.setState({ categories: result, fetched: true, categoryId: '', startDate: null, })
+            console.log(result);
+            let currentDate = moment().format('YYYY-MM-DD');
+            this.setState({ categories: result, fetched: true, categoryId: '', currentDate: currentDate , startDate: null, })
         } catch(exception) {
             if (exception && exception.message && exception.message.includes(400)) {
                 this.setState({ fetched: true, error: "Incorrect request send to server" })
@@ -55,19 +57,15 @@ class NewStrategyPage extends React.Component {
     render() {
         const { status, handleChange, handleBlur, classes, setFieldValue } = this.props;
         const handleGoalChange = (event) => {
-            this.setState({ goal: parseFloat(event.target.value).toFixed(2) })
+            this.setState({ goal: event.target.value })
             handleChange(event)
         }
         const handleCategoryChange = (event) => {
             this.setState({ categoryId: event.target.value, categoryName: event.target.name })
-            handleChange(event)
+            setFieldValue('category', this.state.categories[event.target.value].name)
         }
         const handleMonthsChange = (event) => {
-            this.setState({ goal: parseInt(event.target.value).toFixed(0) })
-            handleChange(event)
-        }
-        const handleDateChange = (event) => {
-            this.setState({ startDate: event.target.value })
+            this.setState({ goal: parseInt(event.target.value) })
             handleChange(event)
         }
 
@@ -149,7 +147,6 @@ class NewStrategyPage extends React.Component {
                                                         label="Category"
                                                         error={Boolean(form.errors.category && form.touched.category)}
                                                     >
-                                                        {/* <MenuItem className={classes.menuItem} key={0} value={""} name={"default"}>Select category</MenuItem> */}
                                                         {this.state.categories.map((category, key) => (
                                                             <MenuItem className={classes.menuItem} key={key} value={key} name={category.name} label={category.name}>{category.name}</MenuItem>
                                                         ))}
@@ -190,6 +187,7 @@ class NewStrategyPage extends React.Component {
                                                                 variant="inline"
                                                                 inputVariant="outlined"
                                                                 format='yyyy-MM-dd'
+                                                                minDate={this.state.currentDate}
                                                                 margin="normal"
                                                                 id="date-picker"
                                                                 label="Start date"
@@ -201,6 +199,7 @@ class NewStrategyPage extends React.Component {
                                                                 }}
                                                                 onBlur={handleBlur}
                                                                 KeyboardButtonProps={{'aria-label': 'change date',}}
+                                                                TextFieldComponent={ (props) => <TextField {...props} disabled={true}/>}
                                                             />
                                                         
                                                         </MuiPickersUtilsProvider>
@@ -219,7 +218,7 @@ class NewStrategyPage extends React.Component {
                                                     placeholder="Months" 
                                                     variant="outlined" 
                                                     InputLabelProps={{shrink: true,}}
-                                                    InputProps={{ inputComponent: NumberFormatInt }}
+                                                    InputProps={{ inputComponent: NumberFormatInt, min: 0 }}
                                                     error={Boolean(form.errors.months && form.touched.months)}
                                                     onChange={handleMonthsChange}
                                                     onBlur={handleBlur}
@@ -229,7 +228,7 @@ class NewStrategyPage extends React.Component {
                                         </Field>
                                     </div>               
                                 <button style={{paddingTop: "60dp"}} type="submit" className="btn btn-primary btn-block">Submit</button>
-                                { status  && <span className="help-block text-danger">{"Login failed: " + status.failed}</span>}
+                                { status && status.failed  && <span className="help-block text-danger">{"Operation failed: " + status.failed}</span>}
                             </Form>
                         </div>
                     </div>
@@ -240,42 +239,57 @@ class NewStrategyPage extends React.Component {
     }
 }
     
-  const NewStrategyFormik = withFormik({
-    
-    mapPropsToValues: (props) => {
-      return {
-        name: props.name || '',
-        description: props.description || '',
-        category: props.category || '',
-        goal: props.goal || '',
-        startDate: props.startDate || '',
-        months: props.months || ''
-      }
-    },
-    handleSubmit: async (values, { props, setStatus, setSubmitting }) => {
-    //   try {
-    //     let result = await AuthService.login(values.name, values.password)
-    //     if (result) {
-    //       props.history.push("/home");
-    //     } else {
-    //       setStatus({failed: "operation failed"})
-    //     }
-    //   } catch(exception) {
-    //     if (exception && exception.message && exception.message.includes(401)) {
-    //       setStatus({failed: "incorrect credentials"})
-    //     } else {
-    //       setStatus({failed: "server error"})
-    //     }
-    //   }
-    },
+const NewStrategyFormik = withFormik({
+
+mapPropsToValues: (props) => {
+    return {
+    name: props.name || '',
+    description: props.description || '',
+    category: props.category || '',
+    goal: props.goal || '',
+    startDate: props.startDate || '',
+    months: props.months || ''
+    }
+},
+handleSubmit: async (values, { props, setStatus, setSubmitting }) => {
+    try {
+        let strategy = {
+            name: values.name,
+            description: values.description,
+            category: values.category,
+            goal: Math.round(values.goal * 100) / 100,
+            startDate: moment(values.startDate).format("YYYY-MM-DD"),
+            months: parseInt(values.months)
+        }
+        console.log(strategy)
+        let result = await StrategyService.postStrategy(strategy)
+        console.log(result)
+        if (result) {
+            props.history.push("/strategy/current");
+        } else {
+            setStatus({failed: "incorrect data"})
+        }
+    } catch(exception) {
+        console.log(exception)
+        if (exception && exception.message) {
+            if (exception.message.includes(401)) {
+                setStatus({failed: "incorrect credentials"})
+            } else if (exception.message.includes(400)) {
+                setStatus({failed: "incorrect request"})
+            }
+        } else {
+            setStatus({failed: "server error"})
+        }
+    }
+},
     validationSchema: Yup.object().shape({
         name: Yup.string().required('Field required'),
         description: Yup.string().optional(),
         category: Yup.string().required("Field required"),
-        goal: Yup.string().required("Field required"),
+        goal: Yup.string().matches(/^\d*(\.{1}\d{1,2}){0,1}$/, "Incorrect value").required("Field required"),
         startDate: Yup.string().required("Field required"),
-        months: Yup.string().required("Field required")
+        months: Yup.number().integer("Invalid amount").moreThan(0, "Amount must be greater than zero").required("Field required")
     })
-  })(NewStrategyPage)
+})(NewStrategyPage)
   
-  export default withStyles(styles)(NewStrategyFormik) 
+export default withStyles(styles)(NewStrategyFormik) 

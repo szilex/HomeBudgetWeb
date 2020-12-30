@@ -62,19 +62,17 @@ export default function StrategyCard( { strategy } ) {
         titleTypographyProps={{variant: 'h5'}}
       />
       <CardContent>
-        <Typography variant="body3" component="p">
-          {strategy.description}
-        </Typography>
-        <Typography variant="body3" component="p">
-          <br/>Category: {strategy.category}
+        { strategy.description && <Typography variant="body1" component="p">
+          {strategy.description}<br/>
+        </Typography>}
+        <Typography variant="body1" component="p">
+          Category: {strategy.category}
 
         </Typography>
       </CardContent>
       <CardActions disableSpacing className={classes.linkAction}>
-        <Button aria-label="show more" className={classes.button} component="p" variant='outlined'>
-            <Link className={classes.link} to={{ pathname: `/strategy/id/${strategy.id}`, strategy: strategy }}>
-                <p className={classes.linkMore}>Show more</p>
-            </Link>
+        <Button aria-label="show more" className={classes.button} component={Link} variant='outlined' to={{ pathname: `/strategy/id/${strategy.id}`, strategy: strategy }}>
+            Show more
         </Button>
       </CardActions>
     </Card>

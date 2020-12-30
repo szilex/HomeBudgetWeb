@@ -19,7 +19,7 @@ function NumberFormatFloat(props) {
     );
   }
 
- export function NumberFormatInt(props) {
+export function NumberFormatInt(props) {
     const { inputRef, onChange, ...other } = props;
   
     return (
@@ -33,8 +33,7 @@ function NumberFormatFloat(props) {
               value: values.value
             }
           });
-        }}
-        decimalSeparator=""
+        }}        
       />
     );
   }

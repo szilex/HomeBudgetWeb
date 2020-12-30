@@ -62,16 +62,14 @@ export default function RegularExpenseCard( { expense } ) {
         titleTypographyProps={{variant: 'h5'}}
       />
       <CardContent>
-        <Typography variant="body3" component="p">
+        <Typography variant="body1" component="p">
           Category: {expense.category}
 
         </Typography>
       </CardContent>
       <CardActions disableSpacing className={classes.linkAction}>
-        <Button aria-label="show more" className={classes.button} component="p" variant='outlined'>
-            <Link className={classes.link} to={{ pathname: `/expense/id/${expense.id}`, expense: expense }}>
-                <p className={classes.linkMore}>Show more</p>
-            </Link>
+        <Button aria-label="show more" className={classes.button} component={Link} variant='outlined' to={{ pathname: `/expense/id/${expense.id}`, expense: expense }}>
+            Show more
         </Button>
       </CardActions>
     </Card>

@@ -64,7 +64,7 @@ function getArchiveStrategies() {
 function postStrategy(strategy) {
     return axios
             .post(API_URL + '/strategy', {
-                login: strategy.name,
+                name: strategy.name,
                 password: strategy.description,
                 category: strategy.category,
                 goal: strategy.goal,
@@ -101,7 +101,6 @@ function getStrategyCategories() {
         }
     })
     .then(response => {
-        console.log(response)
         if (response.status !== 200) {
             if ([401, 403].indexOf(response.status) !== -1) {
                 AuthService.logout();
@@ -113,7 +112,6 @@ function getStrategyCategories() {
         }
         return response.data;
     }, (error) => {
-        console.log(error)
         return Promise.reject(error);
     })
 }

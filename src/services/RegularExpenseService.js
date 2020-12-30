@@ -63,10 +63,10 @@ function getArchiveRegularExpenses() {
 
 function postRegularExpense(expense) {
     return axios
-            .post(API_URL + '/strategy', {
-                login: expense.name,
+            .post(API_URL + '/expense', {
+                name: expense.name,
                 category: expense.category,
-                goal: expense.amount,
+                amount: expense.amount,
                 startDate: expense.startDate,
                 months: expense.months
             }, {
