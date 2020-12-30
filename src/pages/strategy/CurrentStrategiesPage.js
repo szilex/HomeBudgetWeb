@@ -42,7 +42,7 @@ const CurrentStrategiesPage = () => {
         } else {
             return (
                 <>
-                <h1>Current strategies</h1>
+                <h1>Current strategies</h1><br/>
                 <StrategyList strategies={strategiesData.strategies}/>
                 </>
             )

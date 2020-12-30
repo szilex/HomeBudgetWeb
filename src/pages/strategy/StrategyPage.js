@@ -1,9 +1,9 @@
 import { useHistory } from 'react-router-dom';
+import StrategyChart from '../../components/StrategyChart'
 
 const StrategyPage = (props) => {
 
     const history = useHistory();
-    //const id = props.match.params.id;
     const strategy = props.location.strategy;
 
     if (!strategy) return <h1>Strategy not found</h1>
@@ -16,6 +16,7 @@ const StrategyPage = (props) => {
         <p>Goal: {strategy.goal}</p>
         <p>Start date: {strategy.startDate}</p>
         <p>Months: {strategy.months}</p>
+        <StrategyChart strategy={strategy}/>
         <button className="btn btn-primary btn-block" type="submit" onClick={() => history.goBack()}>Go back</button>
         </>
     )

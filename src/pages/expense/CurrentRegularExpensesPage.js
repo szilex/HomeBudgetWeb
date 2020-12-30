@@ -42,7 +42,7 @@ const CurrentRegularExpensesPage = () => {
         } else {
             return (
                 <>
-                <h1>Current regular expenses</h1>
+                <h1>Current regular expenses</h1><br/>
                 <RegularExpenseList expenses={expensesData.expenses}/>
                 </>
             )

@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
     width: 350,
     border: 5,
     borderRadius: 13,
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FD8F49 90%)',
     boxShadow: '0 3px 5px 2px rgba(250, 107, 135, .4s)',
     color: 'white',
   },
@@ -63,7 +63,7 @@ export default function StrategyCard( { strategy } ) {
       />
       <CardContent>
         { strategy.description && <Typography variant="body1" component="p">
-          {strategy.description}<br/>
+          {strategy.description}<br/><br/>
         </Typography>}
         <Typography variant="body1" component="p">
           Category: {strategy.category}
