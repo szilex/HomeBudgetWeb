@@ -56,7 +56,12 @@ export default class StrategyChart extends React.Component {
                                     beginAtZero: true
                                 }
                             }]
-                        }
+                        },
+                        plugins: {
+                            datalabels: {
+                                display: false,
+                            }
+                        },
                     }}
                 />
             </>

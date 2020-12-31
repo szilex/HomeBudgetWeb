@@ -1,6 +1,6 @@
 import React from "react";
 import {Spinner} from 'react-bootstrap'
-import { Redirect, } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import AuthService from '../../services/AuthService'
@@ -86,7 +86,10 @@ class NewRegularExpensePage extends React.Component {
             } else {
                 if (this.state.error) {
                     return (
+                        <>
                         <h1>Error while retrieving regular expenses: {this.state.error}</h1>
+                        <button className="btn btn-primary btn-block" type="submit" onClick={() => this.props.history.goBack()}>Go back</button>
+                        </>
                     )
                 } else {
                     return(
@@ -272,4 +275,4 @@ handleSubmit: async (values, { props, setStatus, setSubmitting }) => {
     })
 })(NewRegularExpensePage)
   
-export default withStyles(styles)(NewRegularExpenseFormik)
+export default withRouter(withStyles(styles)(NewRegularExpenseFormik))

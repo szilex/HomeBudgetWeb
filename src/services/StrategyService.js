@@ -19,7 +19,6 @@ function getCurrentStrategies() {
                 }
             })
             .then(response => {
-                console.log(response)
                 if (response.status !== 200) {
                     if ([401, 403].indexOf(response.status) !== -1) {
                         AuthService.logout();
@@ -31,7 +30,6 @@ function getCurrentStrategies() {
                 }
                 return response.data;
             }, (error) => {
-                console.log(error)
                 return Promise.reject(error);
             })
 }
@@ -44,7 +42,6 @@ function getArchiveStrategies() {
                 }
             })
             .then(response => {
-                console.log(response)
                 if (response.status !== 200) {
                     if ([401, 403].indexOf(response.status) !== -1) {
                         AuthService.logout();
@@ -56,7 +53,6 @@ function getArchiveStrategies() {
                 }
                 return response.data;
             }, (error) => {
-                console.log(error)
                 return Promise.reject(error);
             })
 }
@@ -77,7 +73,6 @@ function postStrategy(strategy) {
                 }
             })
             .then(response => {
-                console.log(response)
                 if (response.status !== 200) {
                     if ([401, 403].indexOf(response.status) !== -1) {
                         AuthService.logout();
@@ -125,7 +120,6 @@ function deleteStrategy(id) {
                 }
             })
             .then(response => {
-                console.log(response)
                 if (response.status !== 200) {
                     if ([401, 403].indexOf(response.status) !== -1) {
                         AuthService.logout();

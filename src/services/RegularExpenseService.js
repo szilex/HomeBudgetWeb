@@ -19,7 +19,6 @@ function getCurrentRegularExpenses() {
                 }
             })
             .then(response => {
-                console.log(response)
                 if (response.status !== 200) {
                     if ([401, 403].indexOf(response.status) !== -1) {
                         AuthService.logout();
@@ -31,7 +30,6 @@ function getCurrentRegularExpenses() {
                 }
                 return response.data;
             }, (error) => {
-                console.log(error)
                 return Promise.reject(error);
             })
 }
@@ -44,7 +42,6 @@ function getArchiveRegularExpenses() {
                 }
             })
             .then(response => {
-                console.log(response)
                 if (response.status !== 200) {
                     if ([401, 403].indexOf(response.status) !== -1) {
                         AuthService.logout();
@@ -56,7 +53,6 @@ function getArchiveRegularExpenses() {
                 }
                 return response.data;
             }, (error) => {
-                console.log(error)
                 return Promise.reject(error);
             })
 }
@@ -76,7 +72,6 @@ function postRegularExpense(expense) {
                 }
             })
             .then(response => {
-                console.log(response)
                 if (response.status !== 200) {
                     if ([401, 403].indexOf(response.status) !== -1) {
                         AuthService.logout();
@@ -100,7 +95,6 @@ function getRegularExpenseCategories() {
         }
     })
     .then(response => {
-        console.log(response)
         if (response.status !== 200) {
             if ([401, 403].indexOf(response.status) !== -1) {
                 AuthService.logout();
@@ -112,7 +106,6 @@ function getRegularExpenseCategories() {
         }
         return response.data;
     }, (error) => {
-        console.log(error)
         return Promise.reject(error);
     })
 }
@@ -126,7 +119,6 @@ function deleteRegularExpense(id) {
                 }
             })
             .then(response => {
-                console.log(response)
                 if (response.status !== 200) {
                     if ([401, 403].indexOf(response.status) !== -1) {
                         AuthService.logout();

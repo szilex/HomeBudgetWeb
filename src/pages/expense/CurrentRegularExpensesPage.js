@@ -1,10 +1,12 @@
 import React, {useState, useEffect } from 'react'
 import {Spinner} from 'react-bootstrap'
-import RegularExpenseList from '../../components/RegularExpenseList'
+import { useHistory } from 'react-router-dom';
+import RegularExpenseList from '../../components/expense/ExpenseList'
 import RegularExpenseService from '../../services/RegularExpenseService'
 
 const CurrentRegularExpensesPage = () => {
 
+    const history = useHistory();
     const [expensesData, setExpensesData] = useState({ fetched: false })
 
     useEffect(() => {
@@ -37,7 +39,10 @@ const CurrentRegularExpensesPage = () => {
     } else {
         if (expensesData.error) {
             return (
-                <h1>Error while retrieving strategies: {expensesData.error}</h1>
+                <>
+                    <h1>Error while retrieving strategies: {expensesData.error}</h1>
+                    <button className="btn btn-primary btn-block" type="submit" onClick={() => history.goBack()}>Go back</button>
+                </>
             )
         } else {
             return (

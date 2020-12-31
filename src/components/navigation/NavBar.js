@@ -4,8 +4,8 @@ import Navbar from 'react-bootstrap/NavBar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
-import { history } from "../App"
-import { AuthService } from "../services/AuthService"
+import { history } from "../../App"
+import { AuthService } from "../../services/AuthService"
 
 export default class NavBar extends React.Component {
     logout() {
@@ -15,7 +15,7 @@ export default class NavBar extends React.Component {
     
     render() {
         return(
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
                 <Navbar.Brand href="/home">
                     <FontAwesomeIcon icon={faHome}/>{' '}
                     Home Budget Web
@@ -28,14 +28,14 @@ export default class NavBar extends React.Component {
                             <NavDropdown.Item href="/budget/current">Current budget</NavDropdown.Item>
                             <NavDropdown.Item href="/budget/archive">Archive budgets</NavDropdown.Item>
                         </NavDropdown>
+                        <NavDropdown title="Regular expense" id="collasible-nav-dropdown">
+                            <NavDropdown.Item href="/expense/new">New regular expense</NavDropdown.Item>
+                            <NavDropdown.Item href="/expense/current">Current regular expenses</NavDropdown.Item>
+                        </NavDropdown>
                         <NavDropdown title="Strategy" id="collasible-nav-dropdown">
                             <NavDropdown.Item href="/strategy/new">New strategy</NavDropdown.Item>
                             <NavDropdown.Item href="/strategy/current">Current strategies</NavDropdown.Item>
                             <NavDropdown.Item href="/strategy/archive">Archive strategies</NavDropdown.Item>
-                        </NavDropdown>
-                        <NavDropdown title="Regular expense" id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="/expense/new">New regular expense</NavDropdown.Item>
-                            <NavDropdown.Item href="/expense/current">Current regular expenses</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Nav>

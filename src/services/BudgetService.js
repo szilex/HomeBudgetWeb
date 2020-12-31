@@ -19,7 +19,6 @@ function getCurrentBudget() {
                 }
             })
             .then(response => {
-                console.log(response)
                 if (response.status !== 200) {
                     if ([401, 403].indexOf(response.status) !== -1) {
                         AuthService.logout();
@@ -31,7 +30,6 @@ function getCurrentBudget() {
                 }
                 return response.data;
             }, (error) => {
-                console.log(error)
                 return Promise.reject(error);
             })
 }
@@ -44,7 +42,6 @@ function getArchiveBudgets() {
                 }
             })
             .then(response => {
-                console.log(response)
                 if (response.status !== 200) {
                     if ([401, 403].indexOf(response.status) !== -1) {
                         AuthService.logout();
@@ -56,7 +53,6 @@ function getArchiveBudgets() {
                 }
                 return response.data;
             }, (error) => {
-                console.log(error)
                 return Promise.reject(error);
             })
 }
@@ -76,7 +72,6 @@ function postBudget(budget) {
                 }
             })
             .then(response => {
-                console.log(response)
                 if (response.status !== 200) {
                     if ([401, 403].indexOf(response.status) !== -1) {
                         AuthService.logout();
@@ -100,7 +95,6 @@ function getCustomExpenseCategories() {
         }
     })
     .then(response => {
-        console.log(response)
         if (response.status !== 200) {
             if ([401, 403].indexOf(response.status) !== -1) {
                 AuthService.logout();
@@ -112,7 +106,6 @@ function getCustomExpenseCategories() {
         }
         return response.data;
     }, (error) => {
-        console.log(error)
         return Promise.reject(error);
     })
 }
@@ -126,7 +119,6 @@ function deleteBudget(id) {
                 }
             })
             .then(response => {
-                console.log(response)
                 if (response.status !== 200) {
                     if ([401, 403].indexOf(response.status) !== -1) {
                         AuthService.logout();

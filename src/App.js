@@ -5,7 +5,7 @@ import { createBrowserHistory } from 'history'
 import { AuthService } from "./services/AuthService"
 
 import { Router, Switch, Route, } from "react-router-dom";
-import { PrivateRoute } from './components/PrivateRoute';
+import { PrivateRoute } from './components/navigation/PrivateRoute';
 import LoginPage from "./pages/user/LoginPage"
 import RegisterPage from "./pages/user/RegisterPage"
 import ChangePasswordPage from "./pages/user/ChangePasswordPage"
@@ -22,10 +22,10 @@ import CurrentRegularExpensesPage from './pages/expense/CurrentRegularExpensesPa
 import NewRegularExpensePage from './pages/expense/NewRegularExpensePage'
 import NotFoundPage from './pages/NotFoundPage'
 import UserAccountPage from './pages/user/UserAccountPage'
-import LoginNavBar from './components/LoginNavBar'
-import NavBar from './components/NavBar'
+import LoginNavBar from './components/navigation/LoginNavBar'
+import NavBar from './components/navigation/NavBar'
 import HomePage from './pages/HomePage'
-import LoginRedirect from './components/LoginRedirect'
+import LoginRedirect from './components/navigation/LoginRedirect'
 
 export const history = createBrowserHistory();
 
@@ -64,8 +64,10 @@ export default class App extends React.Component {
               </div>
             </Route>
             <PrivateRoute path="/">
-              <NavBar/>
+              <div>
+              
               <div className="page-wrapper">
+              <NavBar/>
                 <div className="page-inner">
                   <Switch>
                     <PrivateRoute exact path="/home" component={HomePage}/>
@@ -84,6 +86,7 @@ export default class App extends React.Component {
                     <PrivateRoute component={NotFoundPage}/>
                   </Switch>
                 </div>
+              </div>
               </div>
             </PrivateRoute>
           </Switch>

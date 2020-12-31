@@ -1,12 +1,17 @@
 import { useHistory } from 'react-router-dom';
-import RegularExpenseChart from '../../components/RegularExpenseChart'
+import RegularExpenseChart from '../../components/expense/ExpenseChart'
 
 const RegularExpensePage = (props) => {
 
     const history = useHistory();
     const expense = props.location.expense;
 
-    if (!expense) return <h1>Regular expense not found</h1>
+    if (!expense) return (
+        <>
+            <h1>Regular expense not found</h1>
+            <button className="btn btn-primary btn-block" type="submit" onClick={() => history.goBack()}>Go back</button>
+        </>
+    )
 
     return (
         <>

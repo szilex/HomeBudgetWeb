@@ -1,5 +1,5 @@
 import React from 'react';
-import RegularExpenseCard from './RegularExpenseCard';
+import BudgetCard from './BudgetCard'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
@@ -7,17 +7,22 @@ const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
     },
+    control: {
+      padding: theme.spacing(2),
+    },
   }));
 
-const RegularExpenseList = ({ expenses }) => {
+const BudgetsList = ({ budgets }) => {
+    
     const classes = useStyles();
+
     return (
         <Grid container className={classes.root} spacing={2}>
             <Grid item xs={12}>
                 <Grid container justify="center" spacing={3}>
-                {expenses.map((expense, key) => (
+                {budgets.map((budget, key) => (
                     <Grid key={key} item>
-                        <RegularExpenseCard expense={expense} key={key}/>
+                        <BudgetCard budget={budget} key={key}/>
                     </Grid>
                 ))}
                 </Grid>
@@ -26,4 +31,4 @@ const RegularExpenseList = ({ expenses }) => {
     )
 }
 
-export default RegularExpenseList;
+export default BudgetsList;

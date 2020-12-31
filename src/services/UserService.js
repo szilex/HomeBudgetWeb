@@ -15,7 +15,6 @@ function getCurrentUser() {
                 }
             })
             .then(response => {
-                console.log(response)
                 if (response.status !== 200) {
                     if ([401, 403].indexOf(response.status) !== -1) {
                         AuthService.logout();
@@ -27,7 +26,6 @@ function getCurrentUser() {
                 }
                 return response.data;
             }, (error) => {
-                console.log(error)
                 return Promise.reject(error);
             })
 }

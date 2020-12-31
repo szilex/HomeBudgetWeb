@@ -7,7 +7,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons'
 export default class LoginNavBar extends React.Component {
     render() {
         return(
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
                 <Navbar.Brand href="/login">
                     <FontAwesomeIcon icon={faHome}/>{' '}
                     Home Budget Web

@@ -27,7 +27,6 @@ function login(login, password) {
             })
             //.then(handleResponse)
             .then(response => {
-                console.log(response)
                 if (response.status !== 200) {
                     if ([401, 403].indexOf(response.status) !== -1) {
                         AuthService.logout();
@@ -41,7 +40,6 @@ function login(login, password) {
                 currentTokenSubject.next(response.headers.authorization);
                 return response.headers.authorization;
             }, (error) => {
-                console.log(error)
                 return Promise.reject(error);
             })
 }
@@ -59,7 +57,6 @@ function register(login, password, firstName, lastName) {
                 }
             })
             .then(response => {
-                console.log(response)
                 if (response.status !== 200) {
                     if ([401, 403].indexOf(response.status) !== -1) {
                         AuthService.logout();
@@ -86,7 +83,6 @@ function changePassword(login, password) {
                 }
             })
             .then(response => {
-                console.log(response)
                 if (response.status !== 200) {
                     if ([401, 403].indexOf(response.status) !== -1) {
                         AuthService.logout();
