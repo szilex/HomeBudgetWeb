@@ -48,7 +48,7 @@ const CurrentStrategiesPage = () => {
             return (
                 <>
                 <h1>Current strategies</h1><br/>
-                <StrategyList strategies={strategiesData.strategies}/>
+                <StrategyList strategies={strategiesData.strategies} options={{showCategory: true, showDescription: true, showGoal: true}}/>
                 </>
             )
         }

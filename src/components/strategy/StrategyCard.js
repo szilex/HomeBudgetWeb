@@ -42,7 +42,7 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-export default function StrategyCard( { strategy } ) {
+export default function StrategyCard( { strategy, options } ) {
     const classes = useStyles();
 
     return (
@@ -61,17 +61,27 @@ export default function StrategyCard( { strategy } ) {
               title={strategy.name}
               titleTypographyProps={{variant: 'h5'}}
             />
-            <CardContent>
-                { strategy.description && 
-                  <Typography variant="body1" component="p">
-                      {strategy.description}<br/><br/>
-                  </Typography>
-                }
-                  <Typography variant="body1" component="p">
-                      Category: {strategy.category}
-
-                  </Typography>
-            </CardContent>
+            { options && options.showDescription && strategy.description &&
+                <CardContent>
+                    <Typography variant="body1" component="p">
+                        Description: {strategy.description}
+                    </Typography>
+                </CardContent>
+            }
+            { options && options.showCategory &&
+                <CardContent>
+                    <Typography variant="body1" component="p">
+                        Category: {strategy.category}
+                    </Typography>
+                </CardContent>
+            }
+            { options && options.showGoal &&
+                <CardContent>
+                    <Typography variant="body1" component="p">
+                        Goal: {strategy.goal}
+                    </Typography>
+                </CardContent>
+            }
             <CardActions disableSpacing className={classes.linkAction}>
                 <Button aria-label="show more" className={classes.button} component={Link} variant='outlined' to={{ pathname: `/strategy/id/${strategy.id}`, strategy: strategy }}>
                     Show more

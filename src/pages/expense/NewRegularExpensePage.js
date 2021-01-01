@@ -4,7 +4,7 @@ import { Redirect, withRouter } from "react-router-dom";
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import AuthService from '../../services/AuthService'
-import RegularExpenseService from '../../services/RegularExpenseService'
+import ExpenseService from '../../services/ExpenseService'
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import NumberFormatFloat, { NumberFormatInt } from '../../helpers/NumberFormatCustom'
@@ -41,7 +41,7 @@ class NewRegularExpensePage extends React.Component {
 
     async componentDidMount() {
         try {
-            const result = await RegularExpenseService.getRegularExpenseCategories()
+            const result = await ExpenseService.getRegularExpenseCategories()
             console.log(result);
             let currentDate = moment().format('YYYY-MM-DD');
             this.setState({ categories: result, fetched: true, categoryId: '', currentDate: currentDate , startDate: null, })
@@ -246,7 +246,7 @@ handleSubmit: async (values, { props, setStatus, setSubmitting }) => {
             months: parseInt(values.months)
         }
         console.log(expense)
-        let result = await RegularExpenseService.postRegularExpense(expense)
+        let result = await ExpenseService.postRegularExpense(expense)
         console.log(result)
         if (result) {
             props.history.push("/expense/current");

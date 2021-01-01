@@ -166,3 +166,8 @@ body, html, .App, #root, .auth-wrapper, .page-wrapper {
 .strategy-form-wrapper {
   maxWidth: "150dp";
 }
+
+.close {
+  position: absolute;
+  right: 1rem;
+}

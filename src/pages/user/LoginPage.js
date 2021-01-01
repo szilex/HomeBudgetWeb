@@ -18,7 +18,7 @@ class LoginPage extends React.Component {
         return(
           <div className="container">
             <div className="login-wrapper" >
-              <h2>Login page</h2>
+              <h2>Login form</h2>
               <Form className="form-container">
                 <div className="form-group">
                   <label htmlFor="login">Login</label>
@@ -32,13 +32,11 @@ class LoginPage extends React.Component {
                 </div>
                 <button type="submit" className="btn btn-primary btn-block">Login</button>
                 { status  && <span className="help-block text-danger">{"Login failed: " + status.failed}</span>}
-                <div className="single-line-paragraphs">
-                  <p className="forgot-password text-left">
-                      <Link to="/login/changePassword">Forgot password?</Link>
-                  </p>
-                  <p className="forgot-password text-right">
-                      <Link to="/login/register">Register</Link>
-                  </p>
+                <div className="form-group">
+                  <div style={{overflow: "hidden"}}>
+                    <Link className="forgot-password text-left" style={{float: "left", color: "#167bff"}} to="/login/changePassword">Forgot password?</Link>
+                    <Link className="forgot-password text-right" style={{float: "right", color: "#167bff"}} to="/login/register">Register</Link>
+                  </div>
                 </div>
               </Form>
             </div>

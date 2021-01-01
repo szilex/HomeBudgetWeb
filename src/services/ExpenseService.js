@@ -3,11 +3,11 @@ import AuthService from './AuthService'
 
 const API_URL = "http://localhost:8080";
 
-export const RegularExpenseService = {
+export const ExpenseService = {
     getCurrentRegularExpenses,
     getArchiveRegularExpenses,
     postRegularExpense,
-    getRegularExpenseCategories,
+    getExpenseCategories,
     deleteRegularExpense
 }
 
@@ -87,7 +87,7 @@ function postRegularExpense(expense) {
             })
 }
 
-function getRegularExpenseCategories() {
+function getExpenseCategories() {
     return axios
     .get(API_URL + '/expense/categories', {
         headers: {
@@ -134,4 +134,4 @@ function deleteRegularExpense(id) {
             })
 }
 
-export default RegularExpenseService;
+export default ExpenseService;

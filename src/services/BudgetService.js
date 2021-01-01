@@ -60,11 +60,11 @@ function getArchiveBudgets() {
 function postBudget(budget) {
     return axios
             .post(API_URL + '/budget', {
-                income: budget.name,
-                date: budget.category,
-                customeExpenses: budget.amount,
-                regularExpenses: budget.startDate,
-                strategies: budget.months
+                income: budget.income,
+                date: budget.date,
+                customeExpenses: budget.customeExpenses,
+                regularExpenses: budget.regularExpenses,
+                strategies: budget.strategies
             }, {
                 headers: {
                     'Content-Type': 'application/json',

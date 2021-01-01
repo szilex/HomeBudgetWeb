@@ -2,7 +2,7 @@ import React, {useState, useEffect } from 'react'
 import {Spinner} from 'react-bootstrap'
 import { useHistory } from 'react-router-dom';
 import RegularExpenseList from '../../components/expense/ExpenseList'
-import RegularExpenseService from '../../services/RegularExpenseService'
+import ExpenseService from '../../services/ExpenseService'
 
 const CurrentRegularExpensesPage = () => {
 
@@ -12,7 +12,7 @@ const CurrentRegularExpensesPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const result = await RegularExpenseService.getCurrentRegularExpenses()
+                const result = await ExpenseService.getCurrentRegularExpenses()
                 console.log(result)
                 setExpensesData({ expenses: result, fetched: true })
             } catch (exception) {
@@ -47,8 +47,8 @@ const CurrentRegularExpensesPage = () => {
         } else {
             return (
                 <>
-                <h1>Current regular expenses</h1><br/>
-                <RegularExpenseList expenses={expensesData.expenses}/>
+                <h1>Current regular expenses</h1>
+                <RegularExpenseList expenses={expensesData.expenses} options={{showCategory: true, showAmount: true, showLink: true}}/>
                 </>
             )
         }

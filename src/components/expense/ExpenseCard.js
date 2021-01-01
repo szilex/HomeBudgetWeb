@@ -42,7 +42,7 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-export default function RegularExpenseCard( { expense } ) {
+export default function RegularExpenseCard( { expense, options } ) {
     const classes = useStyles();
 
     return (
@@ -61,16 +61,27 @@ export default function RegularExpenseCard( { expense } ) {
                 title={expense.name}
                 titleTypographyProps={{variant: 'h5'}}
             />
-            <CardContent>
-                <Typography variant="body1" component="p">
-                    Category: {expense.category}
-                </Typography>
-            </CardContent>
-            <CardActions disableSpacing className={classes.linkAction}>
-                <Button aria-label="show more" className={classes.button} component={Link} variant='outlined' to={{ pathname: `/expense/id/${expense.id}`, expense: expense }}>
-                    Show more
-                </Button>
-            </CardActions>
+            { options && options.showCategory &&
+                <CardContent>
+                    <Typography variant="body1" component="p">
+                        Category: {expense.category}
+                    </Typography>
+                </CardContent>
+            }
+            { options && options.showAmount && 
+                <CardContent>
+                    <Typography variant="body1" component="p">
+                        Amount: {expense.amount}
+                    </Typography>
+                </CardContent>
+            }
+            { options && options.showLink &&
+                <CardActions disableSpacing className={classes.linkAction}>
+                    <Button aria-label="show more" className={classes.button} component={Link} variant='outlined' to={{ pathname: `/expense/id/${expense.id}`, expense: expense }}>
+                        Show more
+                    </Button>
+                </CardActions>
+            }
         </Card>
     );
 }

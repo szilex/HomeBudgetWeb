@@ -10,19 +10,19 @@ export default class BudgetChart extends React.Component {
         let budget = props.budget;
         var labels2 = []
         var data = []
-        if (budget.customExpenses) {
+        if (budget.customExpenses && budget.customExpenses.length > 0) {
             labels2.push("Custom expenses")
             data.push(budget.customExpenses.reduce(function(prev, current) {
                 return prev + Math.round(current.amount * 100.0) / 100
             }, 0.0))
         }
-        if (budget.regularExpenses) {
+        if (budget.regularExpenses && budget.regularExpenses.length > 0) {
             labels2.push("Regular expenses")
             data.push(budget.regularExpenses.reduce(function(prev, current) {
                 return prev + Math.round(current.amount * 100.0) / 100
             }, 0.0))
         }
-        if (budget.strategies) {
+        if (budget.strategies && budget.strategies.length > 0) {
             labels2.push("Strategies")
             data.push(budget.strategies.reduce(function(prev, current) {
                 return prev + Math.round(current.goal * 100.0 / current.months) / 100

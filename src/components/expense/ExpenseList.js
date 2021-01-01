@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const RegularExpenseList = ({ expenses }) => {
+const RegularExpenseList = ({ expenses, options }) => {
     const classes = useStyles();
     return (
         <Grid container className={classes.root} spacing={2}>
@@ -17,7 +17,7 @@ const RegularExpenseList = ({ expenses }) => {
                 <Grid container justify="center" spacing={3}>
                 {expenses.map((expense, key) => (
                     <Grid key={key} item>
-                        <RegularExpenseCard expense={expense} key={key}/>
+                        <RegularExpenseCard expense={expense} key={key} options={options} />
                     </Grid>
                 ))}
                 </Grid>

@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const StrategiesList = ({ strategies }) => {
+const StrategiesList = ({ strategies, options }) => {
     
     const classes = useStyles();
 
@@ -22,7 +22,7 @@ const StrategiesList = ({ strategies }) => {
                 <Grid container justify="center" spacing={3}>
                 {strategies.map((strategy, key) => (
                     <Grid key={key} item>
-                        <StrategyCard strategy={strategy} key={key}/>
+                        <StrategyCard strategy={strategy} key={key} options={options}/>
                     </Grid>
                 ))}
                 </Grid>
