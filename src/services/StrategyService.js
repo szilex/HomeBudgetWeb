@@ -115,7 +115,6 @@ function deleteStrategy(id) {
     return axios
             .delete(API_URL + '/strategy?id=' + id, {
                 headers: {
-                    'Content-Type': 'application/json',
                     'Authorization': AuthService.currentTokenValue
                 }
             })

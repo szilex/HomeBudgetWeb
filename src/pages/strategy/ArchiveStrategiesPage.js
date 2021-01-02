@@ -47,7 +47,7 @@ const ArchiveStrategiesPage = () => {
         } else {
             return (
                 <>
-                <h1>Current strategies</h1>
+                <h1>Archive strategies</h1>
                 <StrategyList strategies={strategiesData.strategies} options={{showCategory: true, showDescription: true, showGoal: true}}/>
                 </>
             )

@@ -1,5 +1,5 @@
 import React from 'react';
-import RegularExpenseCard from './ExpenseCard';
+import ExpenseCard from './ExpenseCard';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
@@ -17,7 +17,7 @@ const RegularExpenseList = ({ expenses, options }) => {
                 <Grid container justify="center" spacing={3}>
                 {expenses.map((expense, key) => (
                     <Grid key={key} item>
-                        <RegularExpenseCard expense={expense} key={key} options={options} />
+                        <ExpenseCard expense={expense} key={key} options={options} />
                     </Grid>
                 ))}
                 </Grid>

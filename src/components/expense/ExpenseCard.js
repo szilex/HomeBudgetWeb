@@ -1,16 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Card, CardHeader, CardContent, CardActions, Avatar, Button, IconButton, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Delete } from '@material-ui/icons';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -40,9 +33,19 @@ const useStyles = makeStyles(() => ({
     link: {
         color: "#FFFFFF"
     },
+    cardHeaderRoot: {
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "row",
+        flexGrow: 1,
+    },
+    cardHeaderContent: {
+        overflow: "hidden",
+        display: "flex",
+    }
 }));
 
-export default function RegularExpenseCard( { expense, options } ) {
+export default function ExpenseCard( { expense, options } ) {
     const classes = useStyles();
 
     return (
@@ -54,12 +57,20 @@ export default function RegularExpenseCard( { expense, options } ) {
                     </Avatar>
                 }
                 action={
-                    <IconButton aria-label="settings">
-                      <MoreVertIcon />
-                    </IconButton>
+                    <>
+                        { options && options.showDelete && 
+                            <IconButton aria-label="settings" onClick={() => {console.log("delete"); options.onDelete(expense.id)}}>
+                                <Delete />
+                            </IconButton> 
+                        }
+                    </>
                 }
                 title={expense.name}
-                titleTypographyProps={{variant: 'h5'}}
+                titleTypographyProps={{variant: 'h5', component: 'span'}}
+                classes={{
+                    root: classes.cardHeaderRoot,
+                    content: classes.cardHeaderContent
+                }}
             />
             { options && options.showCategory &&
                 <CardContent>

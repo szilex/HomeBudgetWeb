@@ -26,6 +26,16 @@ const CurrentStrategiesPage = () => {
         fetchData();
     }, [])
 
+    const deleteStrategy = async (id) => {
+        try {
+            const result = await StrategyService.deleteStrategy(id)
+            console.log(result)
+            history.go(0);
+        } catch (exception) {
+            console.log(exception)
+        }
+    }
+
     if (!strategiesData.fetched) {
         return (
             <div className="spinner">
@@ -47,8 +57,8 @@ const CurrentStrategiesPage = () => {
         } else {
             return (
                 <>
-                <h1>Current strategies</h1><br/>
-                <StrategyList strategies={strategiesData.strategies} options={{showCategory: true, showDescription: true, showGoal: true}}/>
+                <h1>Current strategies</h1>
+                <StrategyList strategies={strategiesData.strategies} options={{showCategory: true, showDescription: true, showGoal: true, showDelete: true, onDelete: deleteStrategy}}/>
                 </>
             )
         }

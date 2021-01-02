@@ -1,3 +1,4 @@
+import { faTruckMonster } from '@fortawesome/free-solid-svg-icons';
 import React, {useState, useEffect } from 'react'
 import {Spinner} from 'react-bootstrap'
 import { useHistory } from 'react-router-dom';
@@ -26,6 +27,16 @@ const CurrentRegularExpensesPage = () => {
         fetchData();
     }, [])
 
+    const deleteExpense = async (id) => {
+        try {
+            const result = await ExpenseService.deleteRegularExpense(id)
+            console.log(result)
+            history.go(0);
+        } catch (exception) {
+            console.log(exception)
+        }
+    }
+
     if (!expensesData.fetched) {
         return (
             <div className="spinner">
@@ -48,7 +59,7 @@ const CurrentRegularExpensesPage = () => {
             return (
                 <>
                 <h1>Current regular expenses</h1>
-                <RegularExpenseList expenses={expensesData.expenses} options={{showCategory: true, showAmount: true, showLink: true}}/>
+                <RegularExpenseList expenses={expensesData.expenses} options={{showCategory: true, showAmount: true, showLink: true, showDelete: faTruckMonster, onDelete: deleteExpense}}/>
                 </>
             )
         }
