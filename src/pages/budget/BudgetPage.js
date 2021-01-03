@@ -26,7 +26,7 @@ const BudgetPage = (props) => {
         { budget.customExpenses.length > 0 && 
             <>
                 <h2>Custom expenses</h2>
-                <ExpenseList expenses={budget.customExpenses}/><br/>
+                <ExpenseList expenses={budget.customExpenses} options={{showCategory: true, showAmount: true}}/><br/>
             </> 
         }
         { budget.regularExpenses.length > 0 && 

@@ -51,42 +51,43 @@ export default class App extends React.Component {
           <Switch>
             <Route exact path="/" component={LoginRedirect}/>
             <Route path="/login">
-              <LoginNavBar/>
-              <div className="auth-wrapper">
-                <div className="auth-inner">
-                  <Switch>
-                    <Route exact path="/login" component={LoginPage} />
-                    <Route exact path="/login/register" component={RegisterPage} />
-                    <Route exact path="/login/changePassword" component={ChangePasswordPage} />
-                    <Route component={NotFoundPage}/>
-                  </Switch>
+              <div>
+                <div className="auth-wrapper">
+                  <LoginNavBar/>
+                  <div className="auth-inner">
+                    <Switch>
+                      <Route exact path="/login" component={LoginPage} />
+                      <Route exact path="/login/register" component={RegisterPage} />
+                      <Route exact path="/login/changePassword" component={ChangePasswordPage} />
+                      <Route component={NotFoundPage}/>
+                    </Switch>
+                  </div>
                 </div>
               </div>
             </Route>
             <PrivateRoute path="/">
-              <div>
-              
-              <div className="page-wrapper">
-              <NavBar/>
-                <div className="page-inner">
-                  <Switch>
-                    <PrivateRoute exact path="/home" component={HomePage}/>
-                    <PrivateRoute path="/budget/id/:id" component={BudgetPage}/>
-                    <PrivateRoute exact path="/budget/current" component={CurrentBudgetPage}/>
-                    <PrivateRoute exact path="/budget/archive" component={ArchiveBudgetsPage}/>
-                    <PrivateRoute exact path="/budget/new" component={NewBudgetPage}/>
-                    <PrivateRoute path="/strategy/id/:id" component={StrategyPage}/>
-                    <PrivateRoute exact path="/strategy/current" component={CurrentStrategiesPage}/>
-                    <PrivateRoute exact path="/strategy/archive" component={ArchiveStrategiesPage}/>
-                    <PrivateRoute exact path="/strategy/new" component={NewStrategyPage}/>
-                    <PrivateRoute path="/expense/id/:id" component={RegularExpensePage}/>
-                    <PrivateRoute exact path="/expense/current" component={CurrentRegularExpensesPage}/>
-                    <PrivateRoute exact path="/expense/new" component={NewRegularExpensePage}/>
-                    <PrivateRoute exact path="/user" component={UserAccountPage}/>
-                    <PrivateRoute component={NotFoundPage}/>
-                  </Switch>
+              <div>  
+                <div className="page-wrapper">
+                  <NavBar/>
+                  <div className="page-inner">
+                    <Switch>
+                      <PrivateRoute exact path="/home" component={HomePage}/>
+                      <PrivateRoute path="/budget/id/:id" component={BudgetPage}/>
+                      <PrivateRoute exact path="/budget/current" component={CurrentBudgetPage}/>
+                      <PrivateRoute exact path="/budget/archive" component={ArchiveBudgetsPage}/>
+                      <PrivateRoute exact path="/budget/new" component={NewBudgetPage}/>
+                      <PrivateRoute path="/strategy/id/:id" component={StrategyPage}/>
+                      <PrivateRoute exact path="/strategy/current" component={CurrentStrategiesPage}/>
+                      <PrivateRoute exact path="/strategy/archive" component={ArchiveStrategiesPage}/>
+                      <PrivateRoute exact path="/strategy/new" component={NewStrategyPage}/>
+                      <PrivateRoute path="/expense/id/:id" component={RegularExpensePage}/>
+                      <PrivateRoute exact path="/expense/current" component={CurrentRegularExpensesPage}/>
+                      <PrivateRoute exact path="/expense/new" component={NewRegularExpensePage}/>
+                      <PrivateRoute exact path="/user" component={UserAccountPage}/>
+                      <PrivateRoute component={NotFoundPage}/>
+                    </Switch>
+                  </div>
                 </div>
-              </div>
               </div>
             </PrivateRoute>
           </Switch>
