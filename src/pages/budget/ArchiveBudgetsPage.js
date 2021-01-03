@@ -7,7 +7,7 @@ import BudgetService from '../../services/BudgetService'
 const ArchiveBudgetsPage = () => {
     
     const history = useHistory();
-    const [budgetsData, setBudgetsData] = useState({ fetched: false, status: "error" })
+    const [budgetsData, setBudgetsData] = useState({ fetched: false })
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,6 +25,16 @@ const ArchiveBudgetsPage = () => {
         }
         fetchData();
     }, [])
+
+    const deleteBudget = async (id) => {
+        try {
+            const result = await BudgetService.deleteBudget(id)
+            console.log(result)
+            history.go(0);
+        } catch (exception) {
+            console.log(exception)
+        }
+    }
 
     if (!budgetsData.fetched) {
         return (
@@ -48,7 +58,7 @@ const ArchiveBudgetsPage = () => {
             return (
                 <>
                 <h1>Archive budgets</h1>
-                <BudgetList budgets={budgetsData.budgets}/>
+                <BudgetList budgets={budgetsData.budgets} options={{showIncome: true, showDelete: true, onDelete: deleteBudget}}/>
                 </>
             )
         }

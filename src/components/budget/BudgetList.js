@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const BudgetsList = ({ budgets }) => {
+const BudgetsList = ({ budgets, options }) => {
     
     const classes = useStyles();
 
@@ -22,7 +22,7 @@ const BudgetsList = ({ budgets }) => {
                 <Grid container justify="center" spacing={3}>
                 {budgets.map((budget, key) => (
                     <Grid key={key} item>
-                        <BudgetCard budget={budget} key={key}/>
+                        <BudgetCard budget={budget} key={key} options={options}/>
                     </Grid>
                 ))}
                 </Grid>

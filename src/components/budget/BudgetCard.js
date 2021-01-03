@@ -1,17 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as moment from 'moment';
+import { Card, CardHeader, CardContent, CardActions, Avatar, IconButton, Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import { green } from '@material-ui/core/colors';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Delete } from '@material-ui/icons';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -41,9 +34,19 @@ const useStyles = makeStyles(() => ({
   link: {
     color: "#FFFFFF"
   },
+  cardHeaderRoot: {
+    overflow: "hidden",
+    display: "flex",
+    flexDirection: "row",
+    flexGrow: 1,
+  },
+  cardHeaderContent: {
+      overflow: "hidden",
+      display: "flex",
+  },
 }));
 
-export default function BudgetCard( { budget } ) {
+export default function BudgetCard( { budget, options } ) {
     const classes = useStyles();
 
     return (
@@ -55,19 +58,28 @@ export default function BudgetCard( { budget } ) {
                 </Avatar>
                 }
                 action={
-                <IconButton aria-label="settings">
-                    <MoreVertIcon />
-                </IconButton>
+                  <>
+                    { options && options.showDelete && 
+                      <IconButton aria-label="settings" onClick={() => {console.log("delete"); options.onDelete(budget.id)}}>
+                        <Delete />
+                    </IconButton>
+                    }
+                  </>
                 }
                 title={`Budget: ${moment(budget.date).format("MM-YYYY")}`}
-                titleTypographyProps={{variant: 'h5'}}
+                titleTypographyProps={{variant: 'h5', component: 'span'}}
+                classes={{
+                  root: classes.cardHeaderRoot,
+                  content: classes.cardHeaderContent
+              }}
             />
-            <CardContent>
+            { options && options.showIncome && 
+              <CardContent>
                 <Typography variant="body1" component="p">
-                Income: {budget.income}
-
+                  Income: {budget.income}
                 </Typography>
-            </CardContent>
+              </CardContent>
+            }
             <CardActions disableSpacing className={classes.linkAction}>
                 <Button aria-label="show more" className={classes.button} component={Link} variant='outlined' to={{ pathname: `/budget/id/${budget.id}`, budget: budget }}>
                     Show more
