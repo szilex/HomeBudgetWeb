@@ -41,7 +41,7 @@ class NewRegularExpensePage extends React.Component {
 
     async componentDidMount() {
         try {
-            const result = await ExpenseService.getRegularExpenseCategories()
+            const result = await ExpenseService.getExpenseCategories()
             console.log(result);
             let currentDate = moment().format('YYYY-MM-DD');
             this.setState({ categories: result, fetched: true, categoryId: '', currentDate: currentDate , startDate: null, })
