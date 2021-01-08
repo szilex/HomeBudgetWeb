@@ -1,7 +1,7 @@
 import React from 'react';
 import StrategyCard from './StrategyCard'
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {

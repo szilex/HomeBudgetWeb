@@ -1,6 +1,5 @@
 import React from 'react'
-import Nav from 'react-bootstrap/Nav'
-import Navbar from 'react-bootstrap/NavBar'
+import { Nav, Navbar } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 

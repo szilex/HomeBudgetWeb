@@ -1,7 +1,7 @@
 import axios from 'axios';
 import AuthService from './AuthService'
 
-const API_URL = "http://localhost:8080";
+const API_URL = process.env.REACT_APP_SERVER_URL;
 
 export const UserService = {
     getCurrentUser

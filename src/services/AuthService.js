@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { BehaviorSubject } from 'rxjs';
-//import { handleResponse } from '../helpers/ResponseHandler'
 
-const API_URL = "http://localhost:8080";
+const API_URL = process.env.REACT_APP_SERVER_URL;
 
 const currentTokenSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('token')))
 
@@ -25,7 +24,6 @@ function login(login, password) {
                     'Content-Type': 'application/json'
                 }
             })
-            //.then(handleResponse)
             .then(response => {
                 if (response.status !== 200) {
                     if ([401, 403].indexOf(response.status) !== -1) {

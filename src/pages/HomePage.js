@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from 'react-bootstrap'
 import AuthService from '../services/AuthService'
-import HomeLogo from '../logo.png'
+import HomeLogo from '../res/logo.png'
 
 
 class HomePage extends React.Component {
