@@ -19,14 +19,33 @@ export default class StrategyChart extends React.Component {
             data.push(installment * (i+1.0))
         } 
         data[monthAmount - 1] = goal
+
+        let currentMonthStart = moment().set({date: 1, hour:0,minute:0,second:0,millisecond:0});
+        let currentMonthEnd = moment().set({date: 1, hour:0,minute:0,second:0,millisecond:0}).add({month: 1});
+        let backgroundColors = [];
+        let borderColors = [];
+        month = moment(props.strategy.startDate);
+        for (i = 0; i < monthAmount; i++, month.add(1, 'month')) {
+            if (currentMonthStart.isAfter(month)) {
+                backgroundColors.push('rgba(82,199,47,0.3)')
+                borderColors.push('rgba(82,199,47,1)')
+            }
+            else if(currentMonthEnd.isSameOrBefore(month)) {
+                backgroundColors.push('rgba(19,199,255,0.3)')
+                borderColors.push('rgba(19,199,255,1)')
+            } else {
+                backgroundColors.push('rgba(211,42,16,0.3)')
+                borderColors.push('rgba(211,42,16,1)')
+            }
+        }
         
         this.state = {
             labels: labels,
             datasets: [
                 {
                     label: "Total",
-                    backgroundColor: '#23DAF0',
-                    borderColor: '#FD8F49',
+                    backgroundColor: backgroundColors,
+                    borderColor: borderColors,
                     borderWidth: 2,
                     data: data
                 }
