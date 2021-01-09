@@ -16,10 +16,10 @@ const RegularExpensePage = (props) => {
     return (
         <>
         <h1>Regular expense: {expense.name}</h1>
-        <p>Category: {expense.category}</p>
-        <p>Amount: {expense.amount}</p>
-        <p>Start date: {expense.startDate}</p>
-        <p>Months: {expense.months}</p>
+        <h3>Category: {expense.category}</h3>
+        <h3>Amount: {expense.amount}</h3>
+        <h3>Start date: {expense.startDate}</h3>
+        <h3>Months: {expense.months}</h3>
         <RegularExpenseChart expense={expense}/>
         <button className="btn btn-primary btn-block" type="submit" onClick={() => history.goBack()}>Go back</button>
         </>

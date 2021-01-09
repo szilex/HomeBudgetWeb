@@ -64,12 +64,11 @@ export default class RegularExpenseChart extends React.Component {
                     options={{
                         title:{
                             display:true,
-                            text:'Strategy progress',
-                            fontSize:20
+                            text:'Regular expense progress',
+                            fontSize:25,
                         },
                         legend:{
                             display:false,
-                            //position:'right',
                         },
                         scales:{
                             yAxes: [{

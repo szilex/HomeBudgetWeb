@@ -63,7 +63,7 @@ export default class StrategyChart extends React.Component {
                         title:{
                             display:true,
                             text:'Strategy progress',
-                            fontSize:20
+                            fontSize:25
                         },
                         legend:{
                             display:false,
